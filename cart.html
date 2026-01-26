@@ -71,12 +71,12 @@
                         class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Shop</a>
                     <a href="categories.html"
                         class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Categories</a>
-                    <a href="offers.html"
-                        class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Offers</a>
                     <a href="blog.html"
                         class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Blog</a>
                     <a href="contact.html"
                         class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Contact</a>
+                    <a href="dashboard.html"
+                        class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Dashboard</a>
                 </div>
 
                 <!-- Right Actions -->
@@ -120,7 +120,6 @@
                 <a href="home-2.html" class="block py-2 text-[var(--text-primary)]">Home 2</a>
                 <a href="shop.html" class="block py-2 text-[var(--text-primary)]">Shop</a>
                 <a href="categories.html" class="block py-2 text-[var(--text-primary)]">Categories</a>
-                <a href="offers.html" class="block py-2 text-[var(--text-primary)]">Offers</a>
                 <a href="blog.html" class="block py-2 text-[var(--text-primary)]">Blog</a>
                 <a href="contact.html" class="block py-2 text-[var(--text-primary)]">Contact</a>
                 <a href="dashboard.html" class="block py-2 text-[var(--text-primary)]">Dashboard</a>
@@ -162,8 +161,8 @@
                                         <th class="pb-4"></th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-[var(--border-color)]">
-                                    <tr>
+                                <tbody class="divide-y divide-[var(--border-color)]" id="cart-items-body">
+                                    <tr data-product-id="1" class="cart-item">
                                         <td class="py-4">
                                             <div class="flex items-center space-x-4">
                                                 <div
@@ -175,21 +174,22 @@
                                                     Set</span>
                                             </div>
                                         </td>
-                                        <td class="py-4 text-[var(--text-secondary)]">$29.99</td>
+                                        <td class="py-4 text-[var(--text-secondary)]" data-price="29.99">$29.99</td>
                                         <td class="py-4">
                                             <div class="flex items-center space-x-2">
-                                                <button
+                                                <button data-qty-minus
                                                     class="w-8 h-8 rounded-lg border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--bg-primary)] text-[var(--text-secondary)]">-</button>
-                                                <input type="text" value="1"
+                                                <input type="text" value="1" data-qty-input
                                                     class="w-12 text-center bg-transparent text-[var(--text-primary)]"
                                                     readonly>
-                                                <button
+                                                <button data-qty-plus
                                                     class="w-8 h-8 rounded-lg border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--bg-primary)] text-[var(--text-secondary)]">+</button>
                                             </div>
                                         </td>
-                                        <td class="py-4 font-medium text-[var(--accent-orange)]">$29.99</td>
+                                        <td class="py-4 font-medium text-[var(--accent-orange)]" data-item-total>$29.99
+                                        </td>
                                         <td class="py-4 text-right">
-                                            <button class="text-red-500 hover:text-red-700">
+                                            <button data-remove-item class="text-red-500 hover:text-red-700">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -199,7 +199,7 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr data-product-id="2" class="cart-item">
                                         <td class="py-4">
                                             <div class="flex items-center space-x-4">
                                                 <div
@@ -211,21 +211,22 @@
                                                     Kit</span>
                                             </div>
                                         </td>
-                                        <td class="py-4 text-[var(--text-secondary)]">$49.99</td>
+                                        <td class="py-4 text-[var(--text-secondary)]" data-price="49.99">$49.99</td>
                                         <td class="py-4">
                                             <div class="flex items-center space-x-2">
-                                                <button
+                                                <button data-qty-minus
                                                     class="w-8 h-8 rounded-lg border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--bg-primary)] text-[var(--text-secondary)]">-</button>
-                                                <input type="text" value="1"
+                                                <input type="text" value="1" data-qty-input
                                                     class="w-12 text-center bg-transparent text-[var(--text-primary)]"
                                                     readonly>
-                                                <button
+                                                <button data-qty-plus
                                                     class="w-8 h-8 rounded-lg border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--bg-primary)] text-[var(--text-secondary)]">+</button>
                                             </div>
                                         </td>
-                                        <td class="py-4 font-medium text-[var(--accent-orange)]">$49.99</td>
+                                        <td class="py-4 font-medium text-[var(--accent-orange)]" data-item-total>$49.99
+                                        </td>
                                         <td class="py-4 text-right">
-                                            <button class="text-red-500 hover:text-red-700">
+                                            <button data-remove-item class="text-red-500 hover:text-red-700">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -259,23 +260,23 @@
                         <div class="space-y-3 mb-6">
                             <div class="flex justify-between text-[var(--text-secondary)]">
                                 <span>Subtotal</span>
-                                <span>$79.98</span>
+                                <span id="cart-subtotal">$79.98</span>
                             </div>
                             <div class="flex justify-between text-[var(--text-secondary)]">
                                 <span>Shipping</span>
-                                <span>$5.00</span>
+                                <span id="cart-shipping">$5.00</span>
                             </div>
                             <div class="flex justify-between text-[var(--text-secondary)]">
                                 <span>Tax</span>
-                                <span>$8.00</span>
+                                <span id="cart-tax">$8.00</span>
                             </div>
                             <div
                                 class="border-t border-[var(--border-color)] pt-3 flex justify-between font-bold text-lg text-[var(--text-primary)]">
                                 <span>Total</span>
-                                <span>$92.98</span>
+                                <span id="cart-total">$92.98</span>
                             </div>
                         </div>
-                        <button class="w-full btn-primary mb-3">Proceed to Checkout</button>
+                        <button id="checkout-btn" class="w-full btn-primary mb-3">Proceed to Checkout</button>
                         <p class="text-xs text-center text-[var(--text-secondary)]">Secure checkout powered by Stripe
                         </p>
                     </div>
@@ -330,9 +331,7 @@
                         <li><a href="categories.html"
                                 class="text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Categories</a>
                         </li>
-                        <li><a href="offers.html"
-                                class="text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Special
-                                Offers</a></li>
+
                         <li><a href="product-details.html"
                                 class="text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Featured</a>
                         </li>

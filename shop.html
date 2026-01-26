@@ -71,12 +71,12 @@
                     <a href="shop.html" class="text-[var(--accent-orange)] font-medium">Shop</a>
                     <a href="categories.html"
                         class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Categories</a>
-                    <a href="offers.html"
-                        class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Offers</a>
                     <a href="blog.html"
                         class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Blog</a>
                     <a href="contact.html"
                         class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Contact</a>
+                    <a href="dashboard.html"
+                        class="text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">Dashboard</a>
                 </div>
 
                 <!-- Right Actions -->
@@ -120,7 +120,6 @@
                 <a href="home-2.html" class="block py-2 text-[var(--text-primary)]">Home 2</a>
                 <a href="shop.html" class="block py-2 text-[var(--text-primary)]">Shop</a>
                 <a href="categories.html" class="block py-2 text-[var(--text-primary)]">Categories</a>
-                <a href="offers.html" class="block py-2 text-[var(--text-primary)]">Offers</a>
                 <a href="blog.html" class="block py-2 text-[var(--text-primary)]">Blog</a>
                 <a href="contact.html" class="block py-2 text-[var(--text-primary)]">Contact</a>
                 <a href="dashboard.html" class="block py-2 text-[var(--text-primary)]">Dashboard</a>
@@ -207,6 +206,7 @@
 
                         <button class="w-full btn-primary">Apply Filters</button>
                     </div>
+
                 </aside>
 
                 <!-- Products Grid -->
@@ -240,8 +240,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Premium wooden blocks</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$29.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="1" data-name="Building Blocks Set"
+                                        data-price="29.99"
+                                        data-image="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="1"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -261,8 +274,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Build and program</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$49.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="2" data-name="STEM Robot Kit"
+                                        data-price="49.99"
+                                        data-image="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="2"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -282,8 +308,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">100-piece collection</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$19.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="3" data-name="Premium Puzzle Set"
+                                        data-price="19.99"
+                                        data-image="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="3"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -303,8 +342,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Complete rhythm set</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$34.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="4" data-name="Musical Instruments"
+                                        data-price="34.99"
+                                        data-image="https://images.unsplash.com/photo-1520529123893-2a542932aee2?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="4"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -324,8 +376,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Adventure on tracks</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$39.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="5" data-name="Wooden Train Set"
+                                        data-price="39.99"
+                                        data-image="https://images.unsplash.com/photo-1587654711723-22b568345297?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="5"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -345,8 +410,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Little scientist kit</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$54.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="6" data-name="Science Lab Kit"
+                                        data-price="54.99"
+                                        data-image="https://images.unsplash.com/photo-1530210124550-912dc1381cb8?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="6"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -366,8 +444,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Unleash creativity</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$24.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="7" data-name="Deluxe Art & Craft Kit"
+                                        data-price="24.99"
+                                        data-image="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="7"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -387,8 +478,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Active outdoor fun</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$89.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="8" data-name="Backyard Play Set"
+                                        data-price="89.99"
+                                        data-image="https://images.unsplash.com/photo-1537655780520-1e392ead81f2?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="8"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -408,8 +512,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Soft and cuddly</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$14.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="9" data-name="Hug-a-Bear Plushie"
+                                        data-price="14.99"
+                                        data-image="https://images.unsplash.com/photo-1559449129-9c8cbdec537c?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="9"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -429,8 +546,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Learn while play</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$21.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="10" data-name="Solar System Puzzle"
+                                        data-price="21.99"
+                                        data-image="https://images.unsplash.com/photo-1584034333621-6088a917835d?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="10"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -450,8 +580,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">Creative roleplay</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$74.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="11" data-name="Mini Chef Kitchen"
+                                        data-price="74.99"
+                                        data-image="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="11"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -471,8 +614,21 @@
                             <p class="text-sm text-[var(--text-secondary)] mb-4">High-speed thrills</p>
                             <div class="flex items-center justify-between mt-auto">
                                 <span class="text-xl font-heading font-bold text-[var(--accent-orange)]">$44.99</span>
-                                <button data-add-to-cart class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to
-                                    Cart</button>
+                                <div class="flex items-center">
+                                    <button data-add-to-cart data-product-id="12" data-name="Turbo Speed RC Car"
+                                        data-price="44.99"
+                                        data-image="https://images.unsplash.com/photo-1591438677042-70803dc50587?w=200&h=200&fit=crop"
+                                        class="btn-primary py-2 px-4 text-sm whitespace-nowrap">Add to Cart</button>
+                                    <div data-qty-controls data-product-id="12"
+                                        class="hidden flex items-center space-x-2 bg-[var(--bg-primary)] p-1 rounded-lg border border-[var(--border-color)]">
+                                        <button data-qty-minus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">-</button>
+                                        <span data-qty-value
+                                            class="w-8 text-center text-sm font-semibold text-[var(--text-primary)]">1</span>
+                                        <button data-qty-plus
+                                            class="w-8 h-8 rounded-md hover:bg-[var(--bg-surface)] text-[var(--text-secondary)] flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -540,9 +696,7 @@
                         <li><a href="categories.html"
                                 class="text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Categories</a>
                         </li>
-                        <li><a href="offers.html"
-                                class="text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Special
-                                Offers</a></li>
+
                         <li><a href="product-details.html"
                                 class="text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Featured</a>
                         </li>

@@ -102,17 +102,22 @@
 
 @layer components {
   .btn-primary {
-    background-color: var(--accent-orange);
+    background: linear-gradient(135deg, var(--accent-orange), #ea580c);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 14px;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.2), 0 2px 4px -2px rgba(249, 115, 22, 0.1);
+    border: none;
+    cursor: pointer;
   }
 
   .btn-primary:hover {
-    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.3), 0 4px 6px -4px rgba(249, 115, 22, 0.2);
+    opacity: 1;
   }
 
   .btn-primary:active {
