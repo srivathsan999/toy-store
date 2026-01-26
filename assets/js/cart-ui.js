@@ -168,7 +168,7 @@
   }
 
   // Render logic for shop.html product cards
-  function renderShopPageCards() {
+  window.renderShopPageCards = function () {
     const qtyControls = document.querySelectorAll('[data-qty-controls]');
     if (qtyControls.length === 0) return;
 
@@ -191,8 +191,10 @@
   // --- Initializers ---
 
   // Handle Add to Cart clicks
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
+  // Use event delegation for Add to Cart as well since products are dynamic
+  document.addEventListener('click', (e) => {
+    const button = e.target.closest('[data-add-to-cart]');
+    if (button) {
       e.preventDefault();
       const product = {
         id: button.dataset.productId,
@@ -201,7 +203,7 @@
         image: button.dataset.image
       };
       addItem(product);
-    });
+    }
   });
 
   // Handle Shop Page Quantity Control clicks (Event Delegation)
