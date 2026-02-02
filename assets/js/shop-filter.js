@@ -39,7 +39,7 @@
             name: 'Musical Instruments',
             price: 34.99,
             category: 'Educational',
-            image: 'https://images.unsplash.com/photo-1520529123893-2a542932aee2?w=400&h=400&fit=crop',
+            image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=400&fit=crop',
             description: 'Complete rhythm set',
             featured: false,
             date: '2023-10-15'
@@ -49,7 +49,7 @@
             name: 'Wooden Train Set',
             price: 39.99,
             category: 'Wooden Toys',
-            image: 'https://images.unsplash.com/photo-1587654711723-22b568345297?w=400&h=400&fit=crop',
+            image: 'https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop',
             description: 'Adventure on tracks',
             featured: true,
             date: '2024-01-05'
@@ -89,7 +89,7 @@
             name: 'Hug-a-Bear Plushie',
             price: 14.99,
             category: 'Educational',
-            image: 'https://images.unsplash.com/photo-1559449129-9c8cbdec537c?w=400&h=400&fit=crop',
+            image: 'https://images.unsplash.com/photo-1530325553241-4f6e7690cf36?w=400&h=400&fit=crop',
             description: 'Soft and cuddly',
             featured: false,
             date: '2023-11-05'
@@ -99,7 +99,7 @@
             name: 'Solar System Puzzle',
             price: 21.99,
             category: 'Educational',
-            image: 'https://images.unsplash.com/photo-1584034333621-6088a917835d?w=400&h=400&fit=crop',
+            image: 'https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=400&h=400&fit=crop',
             description: 'Learn while play',
             featured: false,
             date: '2023-12-20'
@@ -119,7 +119,7 @@
             name: 'Turbo Speed RC Car',
             price: 44.99,
             category: 'STEM Kits',
-            image: 'https://images.unsplash.com/photo-1591438677042-70803dc50587?w=400&h=400&fit=crop',
+            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
             description: 'High-speed thrills',
             featured: false,
             date: '2023-12-25'
@@ -243,6 +243,32 @@
         renderProducts(filteredProducts);
     }
 
+    // --- Mobile Filter Toggle ---
+    const mobileFilterButton = document.getElementById('mobile-filter-button');
+    const closeFilterButton = document.getElementById('close-filter-button');
+    const filterSidebar = document.getElementById('filter-sidebar');
+    const filterBackdrop = document.getElementById('filter-backdrop');
+
+    function openFilters() {
+        if (filterSidebar && filterBackdrop) {
+            filterSidebar.classList.remove('-translate-x-full');
+            filterSidebar.classList.add('translate-x-0');
+            filterBackdrop.classList.remove('hidden');
+            // Prevent body scroll when filter is open
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeFilters() {
+        if (filterSidebar && filterBackdrop) {
+            filterSidebar.classList.add('-translate-x-full');
+            filterSidebar.classList.remove('translate-x-0');
+            filterBackdrop.classList.add('hidden');
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+    }
+
     // --- Listeners ---
 
     if (sortSelect) {
@@ -253,6 +279,12 @@
         applyFiltersBtn.addEventListener('click', (e) => {
             e.preventDefault();
             filterAndSort();
+            // Close filter sidebar on mobile after applying filters
+            if (window.innerWidth < 1024) {
+                setTimeout(() => {
+                    closeFilters();
+                }, 300);
+            }
         });
     }
 
@@ -265,6 +297,26 @@
             filterAndSort();
         });
     }
+
+    // Mobile filter toggle listeners
+    if (mobileFilterButton) {
+        mobileFilterButton.addEventListener('click', openFilters);
+    }
+
+    if (closeFilterButton) {
+        closeFilterButton.addEventListener('click', closeFilters);
+    }
+
+    if (filterBackdrop) {
+        filterBackdrop.addEventListener('click', closeFilters);
+    }
+
+    // Close filters when window is resized to desktop size
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) {
+            closeFilters();
+        }
+    });
 
     // Initial Render
     filterAndSort();

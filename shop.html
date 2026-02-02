@@ -145,10 +145,28 @@
     <section class="section-padding bg-[var(--bg-primary)]">
         <div class="container-custom">
             <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Filter Backdrop (Mobile/Tablet) -->
+                <div id="filter-backdrop" class="hidden fixed inset-0 bg-black/50 z-40 lg:hidden"></div>
+
                 <!-- Sidebar Filters -->
-                <aside class="lg:w-64 flex-shrink-0">
-                    <div class="card p-6 sticky top-24">
-                        <h2 class="font-heading font-semibold text-lg mb-4 text-[var(--text-primary)]">Filters</h2>
+                <aside id="filter-sidebar"
+                    class="fixed lg:static top-0 left-0 h-full lg:h-auto w-80 lg:w-64 flex-shrink-0 z-50 lg:z-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+                    <div class="card p-6 lg:sticky lg:top-24 h-full lg:h-auto overflow-y-auto">
+                        <!-- Close Button (Mobile/Tablet Only) -->
+                        <div class="flex items-center justify-between mb-4 lg:hidden">
+                            <h2 class="font-heading font-semibold text-lg text-[var(--text-primary)]">Filters</h2>
+                            <button id="close-filter-button"
+                                class="p-2 rounded-lg hover:bg-[var(--bg-primary)] transition-colors">
+                                <svg class="w-6 h-6 text-[var(--text-primary)]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <h2 class="font-heading font-semibold text-lg mb-4 text-[var(--text-primary)] hidden lg:block">
+                            Filters</h2>
 
                         <!-- Category Filter -->
                         <div class="mb-6">
@@ -215,9 +233,21 @@
                 <!-- Products Grid -->
                 <div class="flex-1">
                     <!-- Sort Bar -->
-                    <div class="flex items-center justify-between mb-6">
-                        <p id="product-count" class="text-[var(--text-secondary)]">Showing 0 products</p>
-                        <select id="sort-select" class="input-field w-auto">
+                    <div class="flex items-center justify-between mb-6 gap-3">
+                        <div class="flex items-center gap-3">
+                            <!-- Mobile Filter Button -->
+                            <button id="mobile-filter-button"
+                                class="lg:hidden btn-primary flex items-center space-x-2 py-2 px-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                                </svg>
+                                <span>Filters</span>
+                            </button>
+                            <p id="product-count" class="text-[var(--text-secondary)] hidden sm:block">Showing 0
+                                products</p>
+                        </div>
+                        <select id="sort-select" class="input-field w-auto text-sm">
                             <option>Sort by: Featured</option>
                             <option>Price: Low to High</option>
                             <option>Price: High to Low</option>

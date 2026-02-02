@@ -157,6 +157,13 @@
     color: white;
   }
 
+  /* Dark mode specific hover state for better contrast */
+  [data-theme="dark"] .btn-outline:hover,
+  html[data-theme="dark"] .btn-outline:hover {
+    background-color: #ea580c;
+    color: white;
+  }
+
   .card {
     background-color: var(--bg-surface);
     border-radius: 18px;
