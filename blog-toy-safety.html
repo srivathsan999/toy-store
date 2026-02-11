@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
@@ -37,7 +37,7 @@
                     </div>
                     <span class="text-2xl font-heading font-bold text-[var(--text-primary)]">PlayNest</span>
                 </a>
-                <div class="hidden lg:flex items-center space-x-8">
+                <div class="hidden xl:flex items-center space-x-8">
                     <div data-dropdown class="relative">
                         <button data-dropdown-toggle
                             class="flex items-center space-x-1 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">
@@ -77,7 +77,7 @@
                     </button>
                     <a href="cart.html" id="cart-icon"
                         class="relative p-2 rounded-lg hover:bg-[var(--bg-primary)] transition-colors">
-                        <svg class="w-6 h-6 text-[var(--text-primary)]" fill="none" stroke="currentColor"
+                        <svg class="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -85,12 +85,12 @@
                         <span id="cart-badge"
                             class="hidden absolute top-0 right-0 bg-[var(--accent-orange)] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
                     </a>
-                    <div class="hidden lg:flex items-center space-x-3">
+                    <div class="hidden xl:flex items-center space-x-3">
                         <a href="login.html" class="btn-primary">Login</a>
                         <a href="signup.html" class="btn-primary">Sign Up</a>
                     </div>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 rounded-lg hover:bg-[var(--bg-primary)]">
-                        <svg class="w-6 h-6 text-[var(--text-primary)]" fill="none" stroke="currentColor"
+                    <button id="mobile-menu-button" class="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--bg-primary)] transition-all">
+                        <svg class="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
@@ -99,10 +99,21 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
             <div class="container-custom py-4 space-y-3">
-                <a href="index.html" class="block py-2 text-[var(--text-primary)]">Home 1</a>
-                <a href="home-2.html" class="block py-2 text-[var(--text-primary)]">Home 2</a>
+                <!-- Mobile Home Dropdown -->
+                <div class="relative" data-dropdown>
+                    <button class="w-full flex items-center justify-between py-2 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors" data-dropdown-toggle>
+                        <span class="font-medium">Home</span>
+                        <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-2 mt-1 border-l-2 border-[var(--border-color)] ml-1" data-dropdown-menu>
+                        <a href="index.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 1</a>
+                        <a href="home-2.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 2</a>
+                    </div>
+                </div>
                 <a href="shop.html" class="block py-2 text-[var(--text-primary)]">Shop</a>
                 <a href="categories.html" class="block py-2 text-[var(--text-primary)]">Categories</a>
                 
@@ -119,12 +130,12 @@
 
     <section class="pt-36 pb-16 md:pt-48 md:pb-24">
         <div class="container-custom max-w-4xl">
-            <a href="blog.html" class="text-[var(--accent-orange)] mb-4 inline-block hover:underline">← Back to Blog</a>
+            <a href="blog.html" class="text-[var(--accent-orange)] mb-4 inline-block hover:underline">â† Back to Blog</a>
             <span class='text-sm text-[var(--accent-orange)] font-medium mb-4 block'>Parent Tips</span>
             <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6 text-[var(--text-primary)]">Navigating Toy Safety Standards</h1>
             <div class="flex items-center space-x-4 mb-8 text-[var(--text-secondary)]">
                 <span>By PlayNest Team</span>
-                <span>•</span>
+                <span>â€¢</span>
                 <span>March 15, 2024</span>
             </div>
             <div class="relative h-96 rounded-[18px] overflow-hidden mb-8">
@@ -245,6 +256,8 @@
 </body>
 
 </html>
+
+
 
 
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
@@ -48,7 +48,7 @@
                 </a>
 
                 <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-8">
+                <div class="hidden xl:flex items-center space-x-8">
                     <div data-dropdown class="relative">
                         <button data-dropdown-toggle
                             class="flex items-center space-x-1 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">
@@ -104,15 +104,16 @@
                     </a>
 
                     <!-- Login/Signup -->
-                    <div class="hidden lg:flex items-center space-x-3">
+                    <div class="hidden xl:flex items-center space-x-3">
                         <a href="login.html" class="btn-primary">Login</a>
                         <a href="signup.html" class="btn-primary">Sign Up</a>
                     </div>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-button" class="lg:hidden p-2 rounded-lg hover:bg-[var(--bg-primary)]">
-                        <svg class="w-6 h-6 text-[var(--text-primary)]" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
+                    <button id="mobile-menu-button"
+                        class="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--bg-primary)] transition-all">
+                        <svg class="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -122,10 +123,21 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
             <div class="container-custom py-4 space-y-3">
-                <a href="index.html" class="block py-2 text-[var(--text-primary)]">Home 1</a>
-                <a href="home-2.html" class="block py-2 text-[var(--text-primary)]">Home 2</a>
+                <!-- Mobile Home Dropdown -->
+                <div class="relative" data-dropdown>
+                    <button class="w-full flex items-center justify-between py-2 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors" data-dropdown-toggle>
+                        <span class="font-medium">Home</span>
+                        <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-2 mt-1 border-l-2 border-[var(--border-color)] ml-1" data-dropdown-menu>
+                        <a href="index.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 1</a>
+                        <a href="home-2.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 2</a>
+                    </div>
+                </div>
                 <a href="shop.html" class="block py-2 text-[var(--text-primary)]">Shop</a>
                 <a href="categories.html" class="block py-2 text-[var(--text-primary)]">Categories</a>
 
@@ -156,7 +168,66 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="shop.html" class="btn-primary">Explore Collection</a>
-                    <a href="offers.html" class="btn-secondary">View Offers</a>
+                    <a href="shop.html" class="btn-outline">View Offers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Perks (Filler Content) -->
+    <section class="py-12 bg-[var(--bg-primary)] border-b border-[var(--border-color)]">
+        <div class="container-custom">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="flex items-center space-x-4 p-4 rounded-2xl bg-[var(--bg-surface)] shadow-sm">
+                    <div
+                        class="w-12 h-12 rounded-full bg-[var(--accent-orange)]/10 flex items-center justify-center text-[var(--accent-orange)] flex-shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm">Free Delivery</p>
+                        <p class="text-xs text-[var(--text-secondary)]">On orders over $50</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 p-4 rounded-2xl bg-[var(--bg-surface)] shadow-sm">
+                    <div
+                        class="w-12 h-12 rounded-full bg-[var(--accent-green)]/10 flex items-center justify-center text-[var(--accent-green)] flex-shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm">Safety Certified</p>
+                        <p class="text-xs text-[var(--text-secondary)]">Eco-friendly materials</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 p-4 rounded-2xl bg-[var(--bg-surface)] shadow-sm">
+                    <div
+                        class="w-12 h-12 rounded-full bg-[var(--accent-blue)]/10 flex items-center justify-center text-[var(--accent-blue)] flex-shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm">Easy Returns</p>
+                        <p class="text-xs text-[var(--text-secondary)]">30-day money back</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 p-4 rounded-2xl bg-[var(--bg-surface)] shadow-sm">
+                    <div
+                        class="w-12 h-12 rounded-full bg-[var(--accent-orange)]/10 flex items-center justify-center text-[var(--accent-orange)] flex-shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm">Expert Support</p>
+                        <p class="text-xs text-[var(--text-secondary)]">24/7 dedicated help</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,7 +262,7 @@
                     <h3 class="font-heading font-semibold text-lg mb-2 text-[var(--text-primary)]">STEM Kits</h3>
                     <p class="text-sm text-[var(--text-secondary)] mb-4">Science, technology, engineering & math</p>
                     <a href="categories.html" class="text-[var(--accent-orange)] font-medium hover:underline">Explore
-                        →</a>
+                        â†’</a>
                 </div>
 
                 <!-- Small Product 2 -->
@@ -203,7 +274,7 @@
                     <h3 class="font-heading font-semibold text-lg mb-2 text-[var(--text-primary)]">Puzzle Games</h3>
                     <p class="text-sm text-[var(--text-secondary)] mb-4">Brain-teasing fun for all ages</p>
                     <a href="categories.html" class="text-[var(--accent-orange)] font-medium hover:underline">Explore
-                        →</a>
+                        â†’</a>
                 </div>
 
                 <!-- Small Product 3 -->
@@ -215,7 +286,7 @@
                     <h3 class="font-heading font-semibold text-lg mb-2 text-[var(--text-primary)]">Building Blocks</h3>
                     <p class="text-sm text-[var(--text-secondary)] mb-4">Creative construction sets</p>
                     <a href="categories.html" class="text-[var(--accent-orange)] font-medium hover:underline">Explore
-                        →</a>
+                        â†’</a>
                 </div>
 
                 <!-- Small Product 4 -->
@@ -227,7 +298,7 @@
                     <h3 class="font-heading font-semibold text-lg mb-2 text-[var(--text-primary)]">Art Supplies</h3>
                     <p class="text-sm text-[var(--text-secondary)] mb-4">Unleash creativity with art</p>
                     <a href="categories.html" class="text-[var(--accent-orange)] font-medium hover:underline">Explore
-                        →</a>
+                        â†’</a>
                 </div>
             </div>
         </div>

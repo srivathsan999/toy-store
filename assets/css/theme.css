@@ -1,20 +1,75 @@
 /* Theme Variables and Utilities */
 
 :root {
-  --transition-base: 200ms ease-in-out;
+  /* Animation Tokens */
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadow System */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Playful Colors (Soft Variants) */
+  --soft-orange: #fff7ed;
+  --soft-green: #f0fdf4;
+  --soft-blue: #eff6ff;
+  --soft-purple: #f5f3ff;
+}
+
+.bg-soft-orange {
+  background-color: var(--soft-orange);
+}
+
+.bg-soft-green {
+  background-color: var(--soft-green);
+}
+
+.bg-soft-blue {
+  background-color: var(--soft-blue);
+}
+
+.bg-soft-purple {
+  background-color: var(--soft-purple);
+}
+
+.card-playful {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.card-playful:hover {
+  border-color: var(--accent-orange);
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: var(--shadow-xl);
 }
 
 [data-theme="dark"],
 html[data-theme="dark"],
 html.dark {
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+
+  /* Playful Colors Dark Mode variants */
+  --soft-orange: #3d2414;
+  --soft-green: #112d1c;
+  --soft-blue: #132238;
+  --soft-purple: #231836;
 }
 
 /* Glassmorphism for Navbar */
@@ -110,13 +165,6 @@ html.dark .glass-nav {
   }
 }
 
-@media (min-width: 1024px) {
-  .container-custom {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
 /* Prevent zoom issues and ensure proper scaling */
 * {
   box-sizing: border-box;
@@ -198,13 +246,6 @@ html[data-theme="dark"] a:not([class*="text-"]) {
   color: var(--text-primary);
 }
 
-/* Ensure buttons are visible */
-[data-theme="dark"] .btn-outline,
-html[data-theme="dark"] .btn-outline {
-  border-color: var(--accent-orange) !important;
-  color: var(--accent-orange) !important;
-}
-
 /* Ensure input fields are visible in dark mode */
 [data-theme="dark"] .input-field,
 [data-theme="dark"] input,
@@ -233,4 +274,127 @@ html[data-theme="dark"] textarea::placeholder {
 html[data-theme="dark"] footer {
   background-color: var(--bg-surface) !important;
   border-color: var(--border-color) !important;
+}
+
+/* --- Added Design System Enhancements --- */
+
+/* Button Theme Consistency */
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.btn-ghost {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+  cursor: pointer;
+  border: 2px solid transparent !important;
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  text-decoration: none !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-orange), #ea580c) !important;
+  color: white !important;
+  box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.39);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.23);
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  background: var(--accent-green) !important;
+  color: white !important;
+}
+
+.btn-secondary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent !important;
+  border: 2px solid var(--accent-orange) !important;
+  color: var(--accent-orange) !important;
+}
+
+.btn-outline:hover {
+  background: var(--accent-orange) !important;
+  color: white !important;
+}
+
+.btn-ghost {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.btn-ghost:hover {
+  background: var(--bg-surface) !important;
+  transform: translateY(-1px);
+}
+
+/* Empty Space Filler components */
+.feature-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  text-align: center;
+  transition: var(--transition-base);
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-orange);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Universal Transitions */
+.page-load {
+  animation: fadeIn var(--transition-slow);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

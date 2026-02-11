@@ -1,5 +1,5 @@
 // Navbar Functionality
-(function() {
+(function () {
   'use strict';
 
   const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -29,10 +29,14 @@
         dropdowns.forEach(other => {
           if (other !== dropdown) {
             const otherMenu = other.querySelector('[data-dropdown-menu]');
+            const otherIcon = other.querySelector('svg');
             if (otherMenu) otherMenu.classList.add('hidden');
+            if (otherIcon) otherIcon.classList.remove('rotate-180');
           }
         });
         menu.classList.toggle('hidden');
+        const icon = button.querySelector('svg');
+        if (icon) icon.classList.toggle('rotate-180');
       });
     }
   });

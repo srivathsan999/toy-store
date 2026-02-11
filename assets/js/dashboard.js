@@ -1,162 +1,157 @@
-// Dashboard Interactions
+// Explorer Dashboard Interactions
 (function () {
     'use strict';
 
-    // Wishlist Functionality
-    const wishlistButtons = document.querySelectorAll('#wishlist .btn-primary');
+    // 1. Navigation Active State
+    const navLinks = document.querySelectorAll('aside nav a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
 
-    wishlistButtons.forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            // Simulate adding to cart
-            const card = this.closest('.card');
-            const productName = card.querySelector('h3').textContent;
-
-            // Visual feedback
-            const originalText = this.textContent;
-            this.textContent = 'Added to Cart!';
-            this.classList.add('bg-green-600', 'border-green-600');
-            this.classList.remove('btn-primary');
-
-            // Trigger cart shake/update (existing cart-ui.js logic would ideally handle this event)
-            // But for simple direct interaction:
-            const cartIcon = document.getElementById('cart-icon');
-            if (cartIcon) {
-                cartIcon.classList.add('cart-shake');
-                setTimeout(() => {
-                    cartIcon.classList.remove('cart-shake');
-                }, 500);
-            }
-
-            // Update badge manually just for display if simple update
-            const cartBadge = document.getElementById('cart-badge');
-            if (cartBadge) {
-                let count = parseInt(cartBadge.textContent || '0');
-                cartBadge.textContent = count + 1;
-                cartBadge.classList.remove('hidden');
-            }
-
-            // Revert button after 2 seconds
-            setTimeout(() => {
-                this.textContent = originalText;
-                this.classList.remove('bg-green-600', 'border-green-600');
-                this.classList.add('btn-primary');
-            }, 2000);
-
-            alert(`${productName} added to your cart!`);
-        });
-    });
-
-    const removeButtons = document.querySelectorAll('#wishlist button.absolute');
-    removeButtons.forEach(btn => {
-        btn.addEventListener('click', function () {
-            if (confirm('Remove this item from your wishlist?')) {
-                const card = this.closest('.card');
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    card.remove();
-                }, 300);
-            }
-        });
-    });
-
-    // Birthday Registry Interactions
-    const createRegistryBtn = document.querySelector('#birthday button.btn-primary');
-    if (createRegistryBtn) {
-        createRegistryBtn.addEventListener('click', () => {
-            const name = prompt("Enter the name for the new registry:");
-            if (name) {
-                alert(`New registry "${name}" created! (Demo only)`);
-            }
-        });
-    }
-
-    const editDetailsBtn = document.querySelector('#birthday button:nth-child(1)'); // roughly identifying edit button
-    if (editDetailsBtn && editDetailsBtn.textContent.includes('Edit')) {
-        editDetailsBtn.addEventListener('click', () => {
-            alert('Edit Registry Details modal would open here.');
-        });
-    }
-
-    const shareLinkBtn = document.querySelector('#birthday button:nth-child(2)');
-    if (shareLinkBtn && shareLinkBtn.textContent.includes('Share')) {
-        shareLinkBtn.addEventListener('click', () => {
-            // Copy to clipboard simulation
-            alert('Registry link copied to clipboard!');
-        });
-    }
-
-    // Mobile Dashboard Drawer Logic
-    const drawerToggle = document.getElementById('dashboard-menu-toggle');
-    const drawer = document.getElementById('dashboard-drawer');
-    const drawerOverlay = document.getElementById('dashboard-drawer-overlay');
-    const drawerClose = document.getElementById('dashboard-drawer-close');
-    const drawerLinks = document.querySelectorAll('[data-drawer-link]');
-
-    if (drawerToggle && drawer && drawerOverlay) {
-        const toggleDrawer = (show) => {
-            if (show) {
-                drawer.classList.remove('-translate-x-full');
-                drawerOverlay.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // Prevent scroll
-            } else {
-                drawer.classList.add('-translate-x-full');
-                drawerOverlay.classList.add('hidden');
-                document.body.style.overflow = '';
-            }
-        };
-
-        drawerToggle.addEventListener('click', () => toggleDrawer(true));
-        drawerClose?.addEventListener('click', () => toggleDrawer(false));
-        drawerOverlay.addEventListener('click', () => toggleDrawer(false));
-
-        drawerLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                toggleDrawer(false);
-
-                // Update active state manually for mobile drawer
-                drawerLinks.forEach(l => {
-                    l.classList.remove('bg-[var(--accent-orange)]', 'text-white', 'shadow-lg', 'shadow-[var(--accent-orange)]/20');
-                    l.classList.add('text-[var(--text-secondary)]');
-                    l.classList.remove('font-bold');
-                    l.classList.add('font-semibold');
-                });
-
-                if (!link.textContent.includes('Logout')) {
-                    link.classList.add('bg-[var(--accent-orange)]', 'text-white', 'shadow-lg', 'shadow-[var(--accent-orange)]/20');
-                    link.classList.remove('text-[var(--text-secondary)]');
-                    link.classList.add('font-bold');
-                    link.classList.remove('font-semibold');
-                }
-            });
-        });
-    }
-
-    // Sidebar smooth scroll active state
-    const sidebarLinks = document.querySelectorAll('aside nav a');
-
-    // Highlight active section on scroll
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const sections = document.querySelectorAll('.flex-1 > div[id]'); // Get direct sections
+    function updateActiveNav() {
+        let scrollPos = window.scrollY + 200;
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - 300)) {
-                current = section.getAttribute('id');
+            if (scrollPos >= section.offsetTop && scrollPos < (section.offsetTop + section.offsetHeight)) {
+                const id = section.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('bg-[var(--accent-orange)]', 'text-white', 'shadow-lg', 'shadow-[var(--accent-orange)]/30', 'font-bold');
+                    link.classList.add('text-[var(--text-primary)]', 'font-semibold');
+
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.remove('text-[var(--text-primary)]', 'font-semibold');
+                        link.classList.add('bg-[var(--accent-orange)]', 'text-white', 'shadow-lg', 'shadow-[var(--accent-orange)]/30', 'font-bold');
+                    }
+                });
             }
         });
+    }
 
-        sidebarLinks.forEach(link => {
-            link.classList.remove('bg-[var(--accent-orange)]', 'text-white');
-            link.classList.add('text-[var(--text-secondary)]', 'hover:bg-[var(--bg-primary)]'); // Reset to default style
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('bg-[var(--accent-orange)]', 'text-white');
-                link.classList.remove('text-[var(--text-secondary)]', 'hover:bg-[var(--bg-primary)]');
+    window.addEventListener('scroll', updateActiveNav);
+
+    // 2. Toy Box (Wishlist) Actions
+    const toyBoxContainer = document.getElementById('toybox');
+    if (toyBoxContainer) {
+        // Add to Kit (Cart)
+        toyBoxContainer.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn-primary');
+            if (btn && btn.textContent.includes('Add to Kit')) {
+                const card = btn.closest('.card-playful');
+                const toyName = card.querySelector('h3').textContent;
+
+                // Feedback
+                const originalText = btn.textContent;
+                btn.textContent = '✨ Added!';
+                btn.style.backgroundColor = 'var(--accent-green)';
+
+                // Update Global Cart (Simulation)
+                const cartBadge = document.getElementById('cart-badge');
+                if (cartBadge) {
+                    let count = parseInt(cartBadge.textContent || '0');
+                    cartBadge.textContent = count + 1;
+                    cartBadge.classList.remove('hidden');
+                }
+
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '';
+                }, 2000);
+            }
+
+            // Remove from Toy Box
+            const removeBtn = e.target.closest('button.text-red-500');
+            if (removeBtn) {
+                if (confirm('Move this toy back to the store shelf?')) {
+                    const card = removeBtn.closest('.card-playful');
+                    card.classList.add('scale-0', 'opacity-0');
+                    setTimeout(() => card.remove(), 400);
+                }
+            }
+        });
+    }
+
+    // 3. Explorer Profiles
+    const addProfileBtn = document.querySelector('#explorers button.btn-primary');
+    if (addProfileBtn) {
+        addProfileBtn.addEventListener('click', () => {
+            const name = prompt("Explorer's Name:");
+            const age = prompt("Explorer's Age:");
+            if (name && age) {
+                const profileGrid = document.querySelector('#explorers .grid');
+                const newProfile = document.createElement('div');
+                newProfile.className = 'card-playful border-l-[8px] border-l-[var(--accent-blue)] flex items-center space-x-4 animate-pop';
+                newProfile.innerHTML = `
+                    <div class="w-16 h-16 bg-soft-blue rounded-full flex items-center justify-center text-3xl">🚀</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-[var(--text-primary)]">${name} (${age} yrs)</h3>
+                        <p class="text-sm text-[var(--text-secondary)]">New Explorer!</p>
+                    </div>
+                `;
+                profileGrid.appendChild(newProfile);
+            }
+        });
+    }
+
+    // 4. Smooth Scrolling for Sidebar
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSec = document.querySelector(targetId);
+            if (targetSec) {
+                window.scrollTo({
+                    top: targetSec.offsetTop - 100,
+                    behavior: 'smooth'
+                });
             }
         });
     });
+
+    // 5. Mobile Drawer Logic
+    const drawer = document.getElementById('mobile-dashboard-drawer');
+    const drawerOpenBtn = document.getElementById('mobile-dashboard-toggle');
+    const drawerCloseBtn = document.getElementById('mobile-dashboard-close');
+    const drawerOverlay = document.getElementById('mobile-dashboard-overlay');
+    const mobileNav = document.getElementById('mobile-dashboard-nav');
+    const desktopNav = document.querySelector('aside nav ul');
+
+    if (drawer && drawerOpenBtn && mobileNav && desktopNav) {
+        // Function to handle drawer state
+        function toggleDrawer(open) {
+            const drawerContent = drawer.querySelector('.absolute.inset-y-0');
+            if (open) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    drawerContent.classList.remove('translate-x-full');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawerContent.classList.add('translate-x-full');
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                }, 300);
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Clone desktop nav content (including logout) to mobile drawer if empty
+        if (mobileNav.children.length === 0) {
+            const sidebarNav = document.querySelector('aside nav');
+            if (sidebarNav) {
+                // Clone all children of the sidebar nav (ul + logout div)
+                Array.from(sidebarNav.children).forEach(child => {
+                    const clone = child.cloneNode(true);
+                    const links = clone.querySelectorAll('a');
+                    links.forEach(link => {
+                        link.classList.add('justify-center');
+                        link.addEventListener('click', () => toggleDrawer(false));
+                    });
+                    mobileNav.appendChild(clone);
+                });
+            }
+        }
+
+        drawerOpenBtn.addEventListener('click', () => toggleDrawer(true));
+        drawerCloseBtn?.addEventListener('click', () => toggleDrawer(false));
+        drawerOverlay?.addEventListener('click', () => toggleDrawer(false));
+    }
 
 })();

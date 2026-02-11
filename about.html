@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
@@ -38,7 +38,7 @@
                     </div>
                     <span class="text-2xl font-heading font-bold text-[var(--text-primary)]">PlayNest</span>
                 </a>
-                <div class="hidden lg:flex items-center space-x-8">
+                <div class="hidden xl:flex items-center space-x-8">
                     <div data-dropdown class="relative">
                         <button data-dropdown-toggle
                             class="flex items-center space-x-1 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">
@@ -87,13 +87,14 @@
                         <span id="cart-badge"
                             class="hidden absolute top-0 right-0 bg-[var(--accent-orange)] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
                     </a>
-                    <div class="hidden lg:flex items-center space-x-3">
+                    <div class="hidden xl:flex items-center space-x-3">
                         <a href="login.html" class="btn-primary">Login</a>
                         <a href="signup.html" class="btn-primary">Sign Up</a>
                     </div>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 rounded-lg hover:bg-[var(--bg-primary)]">
-                        <svg class="w-6 h-6 text-[var(--text-primary)]" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
+                    <button id="mobile-menu-button"
+                        class="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--bg-primary)] transition-all">
+                        <svg class="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -101,13 +102,24 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
             <div class="container-custom py-4 space-y-3">
-                <a href="index.html" class="block py-2 text-[var(--text-primary)]">Home 1</a>
-                <a href="home-2.html" class="block py-2 text-[var(--text-primary)]">Home 2</a>
+                <!-- Mobile Home Dropdown -->
+                <div class="relative" data-dropdown>
+                    <button class="w-full flex items-center justify-between py-2 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors" data-dropdown-toggle>
+                        <span class="font-medium">Home</span>
+                        <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-2 mt-1 border-l-2 border-[var(--border-color)] ml-1" data-dropdown-menu>
+                        <a href="index.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 1</a>
+                        <a href="home-2.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 2</a>
+                    </div>
+                </div>
                 <a href="shop.html" class="block py-2 text-[var(--text-primary)]">Shop</a>
                 <a href="categories.html" class="block py-2 text-[var(--text-primary)]">Categories</a>
-                
+
                 <a href="blog.html" class="block py-2 text-[var(--text-primary)]">Blog</a>
                 <a href="contact.html" class="block py-2 text-[var(--text-primary)]">Contact</a>
                 <a href="dashboard.html" class="block py-2 text-[var(--text-primary)]">Dashboard</a>
@@ -148,11 +160,11 @@
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="text-center">
+            <div class="grid md:grid-cols-3 gap-8 mb-24">
+                <div class="feature-box">
                     <div
-                        class="w-20 h-20 bg-[var(--accent-orange)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-10 h-10 text-[var(--accent-orange)]" fill="none" stroke="currentColor"
+                        class="w-16 h-16 bg-[var(--accent-orange)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-[var(--accent-orange)]" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -161,10 +173,10 @@
                     <h3 class="font-heading font-semibold text-lg mb-2 text-[var(--text-primary)]">Safety First</h3>
                     <p class="text-[var(--text-secondary)]">All products meet international safety standards</p>
                 </div>
-                <div class="text-center">
+                <div class="feature-box">
                     <div
-                        class="w-20 h-20 bg-[var(--accent-green)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-10 h-10 text-[var(--accent-green)]" fill="none" stroke="currentColor"
+                        class="w-16 h-16 bg-[var(--accent-green)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-[var(--accent-green)]" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -174,10 +186,10 @@
                     </h3>
                     <p class="text-[var(--text-secondary)]">Designed by experts to promote learning</p>
                 </div>
-                <div class="text-center">
+                <div class="feature-box">
                     <div
-                        class="w-20 h-20 bg-[var(--accent-blue)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-10 h-10 text-[var(--accent-blue)]" fill="none" stroke="currentColor"
+                        class="w-16 h-16 bg-[var(--accent-blue)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-[var(--accent-blue)]" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
@@ -186,7 +198,47 @@
                     <p class="text-[var(--text-secondary)]">Durable materials built to last</p>
                 </div>
             </div>
+
+            <!-- Our Journey Section (Filler) -->
+            <div class="max-w-4xl mx-auto py-16">
+                <h2 class="text-3xl font-heading font-bold mb-12 text-center text-[var(--text-primary)]">Our Journey
+                </h2>
+                <div class="space-y-12">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div
+                            class="w-24 h-24 bg-[var(--accent-orange)] text-white rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">
+                            2020</div>
+                        <div class="text-center md:text-left">
+                            <h4 class="text-xl font-bold text-[var(--text-primary)] mb-2">The Beginning</h4>
+                            <p class="text-[var(--text-secondary)]">Founded in a small garage with a dream to make
+                                learning more accessible through play.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+                        <div
+                            class="w-24 h-24 bg-[var(--accent-green)] text-white rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">
+                            2022</div>
+                        <div class="text-center md:text-right">
+                            <h4 class="text-xl font-bold text-[var(--text-primary)] mb-2">Expansion</h4>
+                            <p class="text-[var(--text-secondary)]">Opened our first flagship store and launched 50+
+                                original STEM products.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div
+                            class="w-24 h-24 bg-[var(--accent-blue)] text-white rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">
+                            2024</div>
+                        <div class="text-center md:text-left">
+                            <h4 class="text-xl font-bold text-[var(--text-primary)] mb-2">Going Global</h4>
+                            <p class="text-[var(--text-secondary)]">Partnered with schools across the country to bring
+                                PlayNest learning to classrooms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+    </div>
     </section>
 
     <footer class="bg-[var(--bg-surface)] border-t border-[var(--border-color)] section-padding">
@@ -234,7 +286,7 @@
                         <li><a href="categories.html"
                                 class="text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Categories</a>
                         </li>
-                        
+
                         <li><a href="product-details.html"
                                 class="text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Featured</a>
                         </li>
@@ -300,5 +352,3 @@
 </body>
 
 </html>
-
-

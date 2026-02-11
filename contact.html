@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
@@ -38,7 +38,7 @@
                     </div>
                     <span class="text-2xl font-heading font-bold text-[var(--text-primary)]">PlayNest</span>
                 </a>
-                <div class="hidden lg:flex items-center space-x-8">
+                <div class="hidden xl:flex items-center space-x-8">
                     <div data-dropdown class="relative">
                         <button data-dropdown-toggle
                             class="flex items-center space-x-1 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">
@@ -86,13 +86,14 @@
                         <span id="cart-badge"
                             class="hidden absolute top-0 right-0 bg-[var(--accent-orange)] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
                     </a>
-                    <div class="hidden lg:flex items-center space-x-3">
+                    <div class="hidden xl:flex items-center space-x-3">
                         <a href="login.html" class="btn-primary">Login</a>
                         <a href="signup.html" class="btn-primary">Sign Up</a>
                     </div>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 rounded-lg hover:bg-[var(--bg-primary)]">
-                        <svg class="w-6 h-6 text-[var(--text-primary)]" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
+                    <button id="mobile-menu-button"
+                        class="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--bg-primary)] transition-all">
+                        <svg class="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -100,10 +101,21 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
             <div class="container-custom py-4 space-y-3">
-                <a href="index.html" class="block py-2 text-[var(--text-primary)]">Home 1</a>
-                <a href="home-2.html" class="block py-2 text-[var(--text-primary)]">Home 2</a>
+                <!-- Mobile Home Dropdown -->
+                <div class="relative" data-dropdown>
+                    <button class="w-full flex items-center justify-between py-2 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors" data-dropdown-toggle>
+                        <span class="font-medium">Home</span>
+                        <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-2 mt-1 border-l-2 border-[var(--border-color)] ml-1" data-dropdown-menu>
+                        <a href="index.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 1</a>
+                        <a href="home-2.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 2</a>
+                    </div>
+                </div>
                 <a href="shop.html" class="block py-2 text-[var(--text-primary)]">Shop</a>
                 <a href="categories.html" class="block py-2 text-[var(--text-primary)]">Categories</a>
 
@@ -287,6 +299,38 @@
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1841263725696!2d-73.98773128459365!3d40.75797457932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae0bd7!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1626359992383!5m2!1sen!2sus"
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Filler) -->
+    <section class="section-padding bg-[var(--bg-surface)]">
+        <div class="container-custom">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-heading font-bold mb-4 text-[var(--text-primary)]">Common Questions</h2>
+                <p class="text-[var(--text-secondary)]">Everything you need to know about our products and services.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="feature-box !text-left !p-6">
+                    <h4 class="font-bold text-[var(--text-primary)] mb-2">How fast is shipping?</h4>
+                    <p class="text-sm text-[var(--text-secondary)]">We typically process orders within 24 hours, and
+                        shipping takes 3-5 business days depending on your location.</p>
+                </div>
+                <div class="feature-box !text-left !p-6">
+                    <h4 class="font-bold text-[var(--text-primary)] mb-2">Are your toys safe for toddlers?</h4>
+                    <p class="text-sm text-[var(--text-secondary)]">Yes! All our toys undergo rigorous safety testing
+                        and meet international certification standards for all age groups.</p>
+                </div>
+                <div class="feature-box !text-left !p-6">
+                    <h4 class="font-bold text-[var(--text-primary)] mb-2">Can I return a gift?</h4>
+                    <p class="text-sm text-[var(--text-secondary)]">Absolutely. We have a 30-day easy return policy for
+                        gifts as long as the packaging is unopened.</p>
+                </div>
+                <div class="feature-box !text-left !p-6">
+                    <h4 class="font-bold text-[var(--text-primary)] mb-2">Do you offer educational kits?</h4>
+                    <p class="text-sm text-[var(--text-secondary)]">Yes, we have a curated selection of STEM and
+                        educational kits designed by early childhood experts.</p>
+                </div>
             </div>
         </div>
     </section>

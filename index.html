@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
@@ -48,12 +48,6 @@
             max-width: 1280px !important;
             width: 100% !important;
         }
-
-        /* Reset any inherited scaling */
-        * {
-            -webkit-transform-origin: 0 0;
-            transform-origin: 0 0;
-        }
     </style>
     <script>
         // Force reset browser zoom on load
@@ -88,7 +82,7 @@
                 </a>
 
                 <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-8">
+                <div class="hidden xl:flex items-center space-x-8">
                     <div data-dropdown class="relative">
                         <button data-dropdown-toggle
                             class="flex items-center space-x-1 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors">
@@ -144,15 +138,16 @@
                     </a>
 
                     <!-- Login/Signup -->
-                    <div class="hidden lg:flex items-center space-x-3">
-                        <a href="login.html" class="btn-primary">Login</a>
+                    <div class="hidden xl:flex items-center space-x-3">
+                        <a href="login.html" class="btn-ghost">Login</a>
                         <a href="signup.html" class="btn-primary">Sign Up</a>
                     </div>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-button" class="lg:hidden p-2 rounded-lg hover:bg-[var(--bg-primary)]">
-                        <svg class="w-6 h-6 text-[var(--text-primary)]" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
+                    <button id="mobile-menu-button"
+                        class="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--bg-primary)] transition-all">
+                        <svg class="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -162,10 +157,21 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-[var(--border-color)] bg-[var(--bg-surface)]">
             <div class="container-custom py-4 space-y-3">
-                <a href="index.html" class="block py-2 text-[var(--text-primary)]">Home 1</a>
-                <a href="home-2.html" class="block py-2 text-[var(--text-primary)]">Home 2</a>
+                <!-- Mobile Home Dropdown -->
+                <div class="relative" data-dropdown>
+                    <button class="w-full flex items-center justify-between py-2 text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors" data-dropdown-toggle>
+                        <span class="font-medium">Home</span>
+                        <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-2 mt-1 border-l-2 border-[var(--border-color)] ml-1" data-dropdown-menu>
+                        <a href="index.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 1</a>
+                        <a href="home-2.html" class="block py-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">Home 2</a>
+                    </div>
+                </div>
                 <a href="shop.html" class="block py-2 text-[var(--text-primary)]">Shop</a>
                 <a href="categories.html" class="block py-2 text-[var(--text-primary)]">Categories</a>
                 <a href="blog.html" class="block py-2 text-[var(--text-primary)]">Blog</a>
@@ -453,7 +459,7 @@
                 <!-- Age Group 3 -->
                 <a href="categories.html"
                     class="group relative block h-64 rounded-[24px] overflow-hidden shadow-lg hover-scale">
-                    <img src="https://images.unsplash.com/photo-1587654711723-22b568345297?w=600&h=400&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=600&h=400&fit=crop"
                         alt="8+ Years"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div
@@ -513,6 +519,26 @@
                     <p class="text-[var(--text-secondary)]">Durable materials built to last</p>
                 </div>
             </div>
+
+            <!-- Store Statistics (Filler Content) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-[var(--border-color)]">
+                <div class="stat-item bg-[var(--bg-surface)]">
+                    <span class="stat-number">10k+</span>
+                    <span class="stat-label">Happy Kids</span>
+                </div>
+                <div class="stat-item bg-[var(--bg-surface)]">
+                    <span class="stat-number">5k+</span>
+                    <span class="stat-label">Premium Toys</span>
+                </div>
+                <div class="stat-item bg-[var(--bg-surface)]">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Safety Score</span>
+                </div>
+                <div class="stat-item bg-[var(--bg-surface)]">
+                    <span class="stat-number">24h</span>
+                    <span class="stat-label">Fast Shipping</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -533,26 +559,37 @@
                     <span>View Official Instagram</span>
                 </a>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                <div class="aspect-square rounded-[18px] overflow-hidden group cursor-pointer">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 justify-items-center">
+                <div class="aspect-square w-full rounded-[18px] overflow-hidden group cursor-pointer">
                     <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=300&h=300&fit=crop"
                         alt="Instagram 2"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="aspect-square rounded-[18px] overflow-hidden group cursor-pointer">
+                <div class="aspect-square w-full rounded-[18px] overflow-hidden group cursor-pointer">
                     <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&h=300&fit=crop"
                         alt="Instagram 3"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="aspect-square rounded-[18px] overflow-hidden group cursor-pointer">
+                <div class="aspect-square w-full rounded-[18px] overflow-hidden group cursor-pointer">
                     <img src="https://images.unsplash.com/photo-1533512930330-4ac257c86793?w=300&h=300&fit=crop"
                         alt="Instagram 5"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="aspect-square rounded-[18px] overflow-hidden group cursor-pointer">
+                <div class="aspect-square w-full rounded-[18px] overflow-hidden group cursor-pointer">
                     <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=300&h=300&fit=crop"
                         alt="Instagram 6"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="aspect-square w-full rounded-[18px] overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=300&h=300&fit=crop"
+                        alt="Instagram 7"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- Additional Filler Card -->
+                <div
+                    class="aspect-square w-full rounded-[18px] bg-[var(--accent-orange)]/10 flex flex-col items-center justify-center text-center p-4 border border-[var(--accent-orange)]/20">
+                    <p class="text-[var(--accent-orange)] font-bold text-lg mb-1">Join the Nest</p>
+                    <p class="text-xs text-[var(--text-secondary)]">Share your play moments with us!</p>
                 </div>
             </div>
         </div>

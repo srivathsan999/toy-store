@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dashboard - PlayNest</title>
+    <title>Explorer Dashboard - PlayNest</title>
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    <meta name="description" content="Manage your PlayNest account, wishlist, and registries.">
+    <meta name="description" content="Manage your PlayNest account, wishlist, and kid profiles.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/animations.css">
     <script>
-        // Initialize theme immediately to prevent flash
         (function () {
             const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -33,336 +32,308 @@
     </script>
 </head>
 
-<body class="page-load">
-    <!-- Navbar -->
-    <div class="pt-12 flex justify-center">
-        <a href="index.html" class="flex items-center space-x-2">
-            <div class="w-10 h-10 bg-[var(--accent-orange)] rounded-lg flex items-center justify-center">
-                <span class="text-white font-heading font-bold text-xl">P</span>
-            </div>
-            <span class="text-2xl font-heading font-bold text-[var(--text-primary)]">PlayNest</span>
-        </a>
-    </div>
-
-    <!-- Page Header -->
-    <section class="pb-16 bg-gradient-to-br from-[var(--bg-primary)] to-[var(--bg-surface)]">
-        <div class="container-custom text-center">
-            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4 text-[var(--text-primary)]">My Dashboard</h1>
-            <p class="text-lg text-[var(--text-secondary)]">Manage your account, wishlist, and registries</p>
-        </div>
-    </section>
-
-    <!-- Dashboard Section -->
-    <section class="section-padding bg-[var(--bg-primary)]">
+<body class="page-load bg-[var(--bg-primary)]">
+    <!-- Playful Header -->
+    <header class="pt-8 pb-12 bg-gradient-to-b from-[var(--accent-orange)]/10 to-transparent">
         <div class="container-custom">
-            <!-- Mobile Dashboard Trigger -->
-            <div class="lg:hidden mb-6">
-                <button id="dashboard-menu-toggle"
-                    class="flex items-center space-x-3 w-full p-4 card border-[var(--accent-orange)] text-[var(--accent-orange)] font-bold">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                    <span>Dashboard Menu</span>
-                </button>
+            <div class="flex items-center justify-between mb-8">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div
+                        class="w-12 h-12 bg-[var(--accent-orange)] rounded-2xl flex items-center justify-center shadow-lg">
+                        <span class="text-white font-heading font-bold text-2xl">P</span>
+                    </div>
+                    <span
+                        class="text-3xl font-heading font-bold text-[var(--text-primary)] tracking-tight">PlayNest</span>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <div class="relative group">
+                        <img src="https://ui-avatars.com/api/?name=Jane+Doe&background=f97316&color=fff&rounded=true"
+                            alt="User" class="w-12 h-12 border-4 border-[var(--bg-primary)] shadow-md cursor-pointer">
+                    </div>
+                    <button id="mobile-dashboard-toggle"
+                        class="xl:hidden p-3 rounded-full bg-white dark:bg-[var(--bg-surface)] text-[var(--accent-orange)] shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Mobile Dashboard Drawer Overlay -->
-                <div id="dashboard-drawer-overlay"
-                    class="fixed inset-0 bg-black/50 z-[60] hidden backdrop-blur-sm transition-opacity duration-300">
-                </div>
-
-                <!-- Mobile Dashboard Drawer -->
-                <div id="dashboard-drawer"
-                    class="fixed inset-y-0 left-0 w-[280px] bg-[var(--bg-surface)] z-[70] transform -translate-x-full transition-transform duration-300 lg:hidden shadow-2xl p-6 overflow-y-auto">
-                    <div class="flex items-center justify-between mb-8">
-                        <span class="text-xl font-heading font-bold text-[var(--text-primary)]">Settings</span>
-                        <button id="dashboard-drawer-close"
-                            class="p-2 text-[var(--text-secondary)] hover:text-[var(--accent-orange)]">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <nav class="space-y-2">
-                        <a href="#wishlist" data-drawer-link
-                            class="flex items-center px-4 py-4 bg-[var(--accent-orange)] text-white rounded-[16px] font-bold shadow-lg shadow-[var(--accent-orange)]/20">
-                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            Wishlist
-                        </a>
-                        <a href="#birthday" data-drawer-link
-                            class="flex items-center px-4 py-4 text-[var(--text-secondary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] rounded-[16px] font-semibold transition-all">
-                            <svg class="w-5 h-5 mr-3 text-[var(--accent-blue)]" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
-                            </svg>
-                            Birthday Registry
-                        </a>
-                        <a href="#pickup" data-drawer-link
-                            class="flex items-center px-4 py-4 text-[var(--text-secondary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] rounded-[16px] font-semibold transition-all">
-                            <svg class="w-5 h-5 mr-3 text-[var(--accent-green)]" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            Local Pickup
-                        </a>
-                        <div class="pt-6 mt-6 border-t border-[var(--border-color)]">
-                            <a href="#"
-                                class="flex items-center px-4 py-4 text-red-500 hover:bg-red-50 rounded-[16px] font-bold transition-all">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Mobile Dashboard Drawer -->
+            <div id="mobile-dashboard-drawer" class="fixed inset-0 z-[60] xl:hidden hidden">
+                <div id="mobile-dashboard-overlay" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+                <div
+                    class="absolute inset-y-0 right-0 w-72 bg-[var(--bg-primary)] shadow-2xl transform transition-transform duration-300 translate-x-full">
+                    <div class="p-6 h-full flex flex-col">
+                        <div class="relative flex items-center justify-center mb-8">
+                            <button id="mobile-dashboard-close"
+                                class="absolute left-0 p-2 text-[var(--text-secondary)]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                        d="M6 18L18 6M6 6l12 12" />
                                 </svg>
-                                Logout
-                            </a>
+                            </button>
+                            <span class="text-xl font-bold text-[var(--text-primary)]">Menu</span>
                         </div>
-                    </nav>
+                        <nav id="mobile-dashboard-nav" class="flex-1 space-y-2">
+                            <!-- Links will be cloned here via JS or added manually -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-white dark:bg-[var(--bg-surface)] p-8 rounded-[40px] shadow-xl border-4 border-[var(--accent-orange)]/5 relative overflow-hidden">
+                <!-- Decorative Elements -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-[var(--accent-green)]/10 rounded-full blur-3xl">
+                </div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-[var(--accent-blue)]/10 rounded-full blur-3xl">
                 </div>
 
-                <!-- Sidebar Navigation (Desktop) -->
-                <aside class="hidden lg:block lg:w-64 flex-shrink-0">
-                    <div class="card p-4 sticky top-24">
-                        <nav class="space-y-1">
-                            <a href="#wishlist"
-                                class="flex items-center px-4 py-3 bg-[var(--accent-orange)] text-white rounded-[12px] font-medium transition-colors">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-heading font-extrabold text-[var(--text-primary)] mb-2">
+                            Hello, <span class="text-[var(--accent-orange)]">Jane Explorer!</span> 👋
+                        </h1>
+                        <p class="text-[var(--text-secondary)] text-lg">Ready for some more playtime magic today?</p>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <div
+                            class="text-center bg-soft-orange p-4 rounded-3xl border-2 border-[var(--accent-orange)]/20">
+                            <span class="block text-2xl font-bold text-[var(--accent-orange)]">1,250</span>
+                            <span class="text-xs font-bold text-[var(--text-secondary)] uppercase">Reward Stars</span>
+                        </div>
+                        <div class="text-center bg-soft-green p-4 rounded-3xl border-2 border-[var(--accent-green)]/20">
+                            <span class="block text-2xl font-bold text-[var(--accent-green)]">08</span>
+                            <span class="text-xs font-bold text-[var(--text-secondary)] uppercase">Completed
+                                Quests</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-custom pb-24">
+        <div class="flex flex-col xl:flex-row gap-8">
+            <!-- Sidebar Navigation -->
+            <aside class="w-full xl:w-72 space-y-4">
+                <nav
+                    class="bg-white dark:bg-[var(--bg-surface)] p-4 rounded-[32px] shadow-lg border-2 border-transparent">
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#overview"
+                                class="flex items-center space-x-3 p-4 rounded-2xl bg-[var(--accent-orange)] text-white shadow-lg shadow-[var(--accent-orange)]/30 font-bold transition-all">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                 </svg>
-                                Wishlist
+                                <span>Overview</span>
                             </a>
-                            <a href="#birthday"
-                                class="flex items-center px-4 py-3 text-[var(--text-secondary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] rounded-[12px] font-medium transition-colors">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        </li>
+                        <li>
+                            <a href="#toybox"
+                                class="flex items-center space-x-3 p-4 rounded-2xl text-[var(--text-primary)] hover:bg-soft-orange hover:text-[var(--accent-orange)] transition-all font-semibold group">
+                                <svg class="w-6 h-6 text-[var(--accent-orange)]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                </svg>
+                                <span>The Toy Box</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#explorers"
+                                class="flex items-center space-x-3 p-4 rounded-2xl text-[var(--text-primary)] hover:bg-soft-green hover:text-[var(--accent-green)] transition-all font-semibold group">
+                                <svg class="w-6 h-6 text-[var(--accent-green)]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                                <span>Little Explorers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#registries"
+                                class="flex items-center space-x-3 p-4 rounded-2xl text-[var(--text-primary)] hover:bg-soft-blue hover:text-[var(--accent-blue)] transition-all font-semibold group">
+                                <svg class="w-6 h-6 text-[var(--accent-blue)]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
                                 </svg>
-                                Birthday Registry
+                                <span>Magic Parties</span>
                             </a>
-                            <a href="#pickup"
-                                class="flex items-center px-4 py-3 text-[var(--text-secondary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] rounded-[12px] font-medium transition-colors">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        </li>
+                        <li>
+                            <a href="#orders"
+                                class="flex items-center space-x-3 p-4 rounded-2xl text-[var(--text-primary)] hover:bg-soft-purple hover:text-purple-600 transition-all font-semibold group">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1m-4 0a1 1 0 001 1h1m-4 0a1 1 0 001 1h1" />
                                 </svg>
-                                Local Pickup
+                                <span>My Deliveries</span>
                             </a>
-                            <a href="#"
-                                class="flex items-center px-4 py-3 text-[var(--text-secondary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] rounded-[12px] font-medium transition-colors">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                                </svg>
-                                Logout
-                            </a>
-                        </nav>
+                        </li>
+                    </ul>
+                    <div class="mt-8 pt-4 border-t border-[var(--border-color)]">
+                        <a href="index.html"
+                            class="flex items-center space-x-3 p-4 rounded-2xl text-red-500 hover:bg-red-50 font-bold transition-all">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                            <span>Logout</span>
+                        </a>
                     </div>
-                </aside>
+                </nav>
+            </aside>
 
-                <!-- Dashboard Content -->
-                <div class="flex-1 space-y-12">
+            <!-- Main Content Area -->
+            <div class="flex-1 space-y-10">
 
-                    <!-- Wishlist Section -->
-                    <div id="wishlist">
-                        <div class="flex items-center justify-between mb-6">
-                            <h2 class="text-2xl font-heading font-bold text-[var(--text-primary)]">My Wishlist</h2>
-                            <button class="text-[var(--accent-orange)] font-medium hover:underline">View All</button>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- Wishlist Item 1 -->
-                            <div class="card product-card p-4">
-                                <div
-                                    class="relative aspect-square rounded-[12px] overflow-hidden bg-[var(--bg-primary)] mb-4">
-                                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop"
-                                        alt="Building Blocks Set" class="w-full h-full object-cover">
-                                    <button
-                                        class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-red-500 hover:bg-white transition-colors">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <h3 class="font-heading font-semibold text-[var(--text-primary)] mb-2">Building Blocks
-                                    Set</h3>
-                                <p class="text-xl font-heading font-bold text-[var(--accent-orange)] mb-3">$29.99</p>
-                                <button class="btn-primary w-full py-2 text-sm">Add to Cart</button>
-                            </div>
-
-                            <!-- Wishlist Item 2 -->
-                            <div class="card product-card p-4">
-                                <div
-                                    class="relative aspect-square rounded-[12px] overflow-hidden bg-[var(--bg-primary)] mb-4">
-                                    <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=400&fit=crop"
-                                        alt="STEM Robot Kit" class="w-full h-full object-cover">
-                                    <button
-                                        class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-red-500 hover:bg-white transition-colors">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <h3 class="font-heading font-semibold text-[var(--text-primary)] mb-2">STEM Robot Kit
-                                </h3>
-                                <p class="text-xl font-heading font-bold text-[var(--accent-orange)] mb-3">$49.99</p>
-                                <button class="btn-primary w-full py-2 text-sm">Add to Cart</button>
-                            </div>
-
-                            <!-- Wishlist Item 3 -->
-                            <div class="card product-card p-4">
-                                <div
-                                    class="relative aspect-square rounded-[12px] overflow-hidden bg-[var(--bg-primary)] mb-4">
-                                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=400&fit=crop"
-                                        alt="Puzzle Set" class="w-full h-full object-cover">
-                                    <button
-                                        class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-red-500 hover:bg-white transition-colors">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <h3 class="font-heading font-semibold text-[var(--text-primary)] mb-2">Premium Puzzle
-                                    Set</h3>
-                                <p class="text-xl font-heading font-bold text-[var(--accent-orange)] mb-3">$19.99</p>
-                                <button class="btn-primary w-full py-2 text-sm">Add to Cart</button>
-                            </div>
-                        </div>
+                <!-- Explorers Snapshot -->
+                <section id="explorers">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-heading font-bold text-[var(--text-primary)]">My Little Explorers</h2>
+                        <button class="btn-primary btn-sm">+ Add New Profile</button>
                     </div>
-
-                    <!-- Birthday Registry Section -->
-                    <div id="birthday" class="pt-8 border-t border-[var(--border-color)]">
-                        <div class="flex items-center justify-between mb-6">
-                            <h2 class="text-2xl font-heading font-bold text-[var(--text-primary)]">Birthday Registry
-                            </h2>
-                            <button class="btn-primary py-2 px-4 text-sm">+ Create New Registry</button>
-                        </div>
-
-                        <div class="card p-6 mb-6">
-                            <div class="flex items-start justify-between">
-                                <div>
-                                    <h3 class="text-xl font-heading font-semibold mb-1 text-[var(--text-primary)]">
-                                        Noah's 5th Birthday</h3>
-                                    <p class="text-[var(--text-secondary)] mb-4">Oct 12, 2024 • Space Theme</p>
-                                    <div class="flex -space-x-2 mb-4">
-                                        <div
-                                            class="w-8 h-8 rounded-full bg-blue-100 border-2 border-[var(--bg-surface)]">
-                                        </div>
-                                        <div
-                                            class="w-8 h-8 rounded-full bg-green-100 border-2 border-[var(--bg-surface)]">
-                                        </div>
-                                        <div
-                                            class="w-8 h-8 rounded-full bg-yellow-100 border-2 border-[var(--bg-surface)]">
-                                        </div>
-                                        <div
-                                            class="w-8 h-8 rounded-full bg-gray-100 border-2 border-[var(--bg-surface)] flex items-center justify-center text-xs font-bold text-gray-500">
-                                            +5</div>
-                                    </div>
-                                    <div class="flex space-x-3">
-                                        <button
-                                            class="px-4 py-2 border border-[var(--border-color)] rounded-[8px] text-sm text-[var(--text-primary)] hover:bg-[var(--bg-primary)]">Edit
-                                            Details</button>
-                                        <button
-                                            class="px-4 py-2 border border-[var(--border-color)] rounded-[8px] text-sm text-[var(--text-primary)] hover:bg-[var(--bg-primary)]">Share
-                                            Link</button>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-3xl font-bold text-[var(--accent-green)]">12</div>
-                                    <p class="text-xs text-[var(--text-secondary)]">Items Found</p>
-                                </div>
-                            </div>
-                            <div class="mt-6 pt-6 border-t border-[var(--border-color)]">
-                                <div class="w-full bg-[var(--bg-primary)] rounded-full h-2">
-                                    <div class="bg-[var(--accent-green)] h-2 rounded-full" style="width: 65%"></div>
-                                </div>
-                                <p class="text-xs text-[var(--text-secondary)] mt-2 text-right">65% Purchased</p>
-                            </div>
-                        </div>
-
-                        <!-- Empty State Example -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div
-                            class="card p-8 border-dashed border-2 border-[var(--border-color)] flex flex-col items-center justify-center text-center">
+                            class="card-playful border-l-[8px] border-l-[var(--accent-orange)] flex items-center space-x-4">
                             <div
-                                class="w-16 h-16 bg-[var(--bg-primary)] rounded-full flex items-center justify-center mb-4 text-[var(--text-secondary)]">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
+                                class="w-16 h-16 bg-soft-orange rounded-full flex items-center justify-center text-3xl">
+                                🧩</div>
+                            <div>
+                                <h3 class="font-bold text-lg text-[var(--text-primary)]">Noah (5 yrs)</h3>
+                                <p class="text-sm text-[var(--text-secondary)]">Loves STEM Kits, Space</p>
                             </div>
-                            <h3 class="font-heading font-semibold text-[var(--text-primary)] mb-1">Create Another
-                                Registry</h3>
-                            <p class="text-sm text-[var(--text-secondary)]">Planning a party? Create a wishlist for
-                                guests.</p>
+                        </div>
+                        <div
+                            class="card-playful border-l-[8px] border-l-[var(--accent-green)] flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-soft-green rounded-full flex items-center justify-center text-3xl">
+                                🎨</div>
+                            <div>
+                                <h3 class="font-bold text-lg text-[var(--text-primary)]">Emma (3 yrs)</h3>
+                                <p class="text-sm text-[var(--text-secondary)]">Loves Building Blocks, Art</p>
+                            </div>
                         </div>
                     </div>
+                </section>
 
-                    <!-- Local Pickup Section -->
-                    <div id="pickup" class="pt-8 border-t border-[var(--border-color)]">
-                        <h2 class="text-2xl font-heading font-bold text-[var(--text-primary)] mb-6">Local Pickup</h2>
-
-                        <div class="card p-6 bg-[var(--bg-surface)] border border-[var(--accent-green)]">
-                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                                <div>
-                                    <div
-                                        class="inline-flex items-center px-3 py-1 rounded-full bg-[var(--accent-green)]/10 text-[var(--accent-green)] text-xs font-bold mb-3">
-                                        READY FOR PICKUP
-                                    </div>
-                                    <h3 class="text-xl font-heading font-bold text-[var(--text-primary)] mb-1">Order
-                                        #88392</h3>
-                                    <p class="text-[var(--text-secondary)] mb-4">4 items • Paid</p>
-                                    <div class="flex items-start space-x-2 text-sm text-[var(--text-secondary)]">
-                                        <svg class="w-5 h-5 text-[var(--accent-orange)] flex-shrink-0" fill="none"
-                                            stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                <!-- The Toy Box (Wishlist) -->
+                <section id="toybox">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-heading font-bold text-[var(--text-primary)]">The Toy Box (Wishlist)
+                        </h2>
+                        <a href="shop.html" class="text-[var(--accent-orange)] font-bold hover:underline">Go Shopping
+                            →</a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Product Card -->
+                        <div class="card-playful group">
+                            <div class="relative aspect-square rounded-[24px] overflow-hidden bg-soft-blue mb-4">
+                                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop"
+                                    alt="Toy"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute top-3 right-3 flex flex-col space-y-2">
+                                    <button
+                                        class="p-2 bg-[var(--bg-surface)] rounded-full text-red-500 shadow-md hover:scale-110 transition-all">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                         </svg>
-                                        <span>123 Toy Street, Play City<br>Open today: 9:00 AM - 8:00 PM</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex flex-col items-center p-4 bg-white rounded-lg border border-[var(--border-color)]">
-                                    <!-- QR Code Placeholder -->
-                                    <div
-                                        class="w-32 h-32 bg-gray-900 mb-2 flex items-center justify-center text-white text-xs">
-                                        QR CODE</div>
-                                    <p class="text-xs text-gray-500 font-mono">SCAN AT STORE</p>
+                                    </button>
                                 </div>
                             </div>
+                            <h3 class="font-bold text-[var(--text-primary)] mb-1">Building Blocks Set</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-[var(--accent-orange)]">$29.99</span>
+                                <button class="btn-primary btn-sm">Add to Kit</button>
+                            </div>
+                        </div>
+
+                        <div class="card-playful group">
+                            <div class="relative aspect-square rounded-[24px] overflow-hidden bg-soft-blue mb-4">
+                                <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=400&fit=crop"
+                                    alt="Toy"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute top-3 right-3 flex flex-col space-y-2">
+                                    <button
+                                        class="p-2 bg-[var(--bg-surface)] rounded-full text-red-500 shadow-md hover:scale-110 transition-all">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-[var(--text-primary)] mb-1">STEM Explorer Kit</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-[var(--accent-orange)]">$45.00</span>
+                                <button class="btn-primary btn-sm">Add to Kit</button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="card-playful border-dashed border-4 flex flex-col items-center justify-center p-8 text-center bg-[var(--bg-surface)]/30">
+                            <div
+                                class="w-16 h-16 rounded-full bg-[var(--bg-primary)] flex items-center justify-center text-4xl mb-4 shadow-sm">
+                                🧸</div>
+                            <p class="font-bold text-[var(--text-secondary)]">Empty slot in the Toy Box!</p>
+                            <a href="shop.html"
+                                class="text-sm font-bold text-[var(--accent-orange)] mt-2 hover:underline">Browse
+                                Toys</a>
                         </div>
                     </div>
-                </div>
+                </section>
+
+                <!-- Part Tracking & Delivery -->
+                <section id="orders">
+                    <h2 class="text-2xl font-heading font-bold text-[var(--text-primary)] mb-6">Adventure Map (Orders)
+                    </h2>
+                    <div class="card-playful bg-soft-purple border-purple-500/20">
+                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                            <div
+                                class="w-24 h-24 bg-[var(--bg-primary)] rounded-[32px] flex items-center justify-center text-5xl shadow-inner">
+                                🚚</div>
+                            <div class="flex-1 text-center md:text-left">
+                                <div
+                                    class="inline-flex px-4 py-1 rounded-full bg-purple-600 text-white text-xs font-bold mb-2">
+                                    ON THE ROAD</div>
+                                <h3 class="text-xl font-bold text-[var(--text-primary)]">STEM Rocket is landing soon!
+                                </h3>
+                                <p class="text-[var(--text-secondary)]">Order #PN-9832 • Est. Arrival: Tomorrow</p>
+                            </div>
+                            <button class="btn-primary">Track Rocket</button>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <div class="py-8 border-t border-[var(--border-color)] text-center text-[var(--text-secondary)]">
-        <p>&copy; 2026 PlayNest. All rights reserved.</p>
+    <div class="py-12 border-t border-[var(--border-color)] text-center text-[var(--text-secondary)]">
+        <div class="container-custom">
+            <div class="flex flex-col items-center space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-[var(--accent-orange)] rounded-lg flex items-center justify-center">
+                        <span class="text-white font-heading font-bold text-sm">P</span>
+                    </div>
+                    <span class="text-xl font-heading font-bold text-[var(--text-primary)]">PlayNest</span>
+                </div>
+                <p>&copy; 2026 PlayNest. All rights reserved. Keep playing, keep growing!</p>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="assets/js/theme-toggle.js"></script>
-    <script src="assets/js/navbar.js"></script>
-    <script src="assets/js/cart-ui.js"></script>
     <script src="assets/js/dashboard.js"></script>
 </body>
 
 </html>
-
-
